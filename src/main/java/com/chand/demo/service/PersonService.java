@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.chand.demo.data.Person;
 import com.chand.demo.repository.PersonRepository;
-import com.chand.demo.schema.PersonSchema;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -21,7 +20,7 @@ public class PersonService {
 	private PersonRepository personRepo;
 	
 	
-	public Flux<PersonSchema> getAllPersons(){
+	public Flux<Person> getAllPersons(){
 		return personRepo.findAll();
 	}
 	
@@ -37,16 +36,30 @@ public class PersonService {
 //				.build();
 //	}
 	
-	public Mono<PersonSchema> savePerson(@NotNull Person person) throws IOException{
-		PersonSchema personSchema = createPerson(person);
+	public Mono<Person> savePerson(@NotNull Person person) throws IOException{
 		return personRepo.save(person);
 	}
-	public PersonSchema createPerson(@NotNull Person person) throws IOException{ 
-		PersonSchema personSchema = new PersonSchema();
-		personSchema.setId(person.getId());
-		personSchema.setFirstName(person.getFirstName());
-		personSchema.setLastName(person.getLastName());
-		return personSchema;
+	
+//	public PersonSchema createPerson(@NotNull Person person) throws IOException{ 
+//		PersonSchema personSchema = new PersonSchema();
+//		personSchema.setId(person.getId());
+//		personSchema.setFirstName(person.getFirstName());
+//		personSchema.setLastName(person.getLastName());
+//		personSchema.setName(person.getName());
+//		personSchema.setAge(person.getAge());
+//		personSchema.setQualification(person.getQualification());
+//		personSchema.setDesignation(person.getDesignation());
+//		//personSchema.setInterests(person.getInterests());
+//		return personSchema;
+//	}
+	
+	
+	public Mono<Void> deleteOne(String id){
+		Person person = new Person();
+		person.setId(id);
+		return personRepo.deleteById(id);
 	}
+	
+	
 	
 }

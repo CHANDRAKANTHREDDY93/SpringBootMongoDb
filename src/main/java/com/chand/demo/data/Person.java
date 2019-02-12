@@ -1,11 +1,15 @@
 package com.chand.demo.data;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.*;
 
-@Builder
+//@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Data 
+@Document(collection="person")
 public class Person {
 	
 	@Id
@@ -13,6 +17,12 @@ public class Person {
 	private String id;
 	private String firstName;
 	private String lastName;
+	private String name;
+	private int age;
+	private String qualification;
+	private String designation;
+	//private Array interests;
+	
 	public String getId() {
 		return id;
 	}
@@ -25,16 +35,38 @@ public class Person {
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-	public Person(String id, String firstName, String lastName) {
-		super();
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
+	//private void setName(String firstName, String lastName) {
+		//this.name = firstName + lastName;
+	//}
+	public void setAge(int age) {
+		this.age = age;
 	}
-	public String getLastName() {
-		return lastName;
+	public int getAge() {
+		return age;
 	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setQualification(String qualification) {
+		this.qualification = qualification;
 	}
+	public String getQualification(){
+		return qualification;
+	}
+	public void setDesignation(String designation) {
+		this.designation =designation;
+	}
+	public String getDesignation() {
+		return designation;
+	}
+	//public void setInterests(Array interests) {
+		//this.interests = interests;
+	//}
+	//public Array getInterests() {
+		//return interests;
+	//}
+	
+	public String getName() {
+		return firstName + lastName;
+	}
+	
+
+
 }
