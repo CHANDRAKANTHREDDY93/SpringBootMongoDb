@@ -2,15 +2,14 @@ package com.chand.demo.controller;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.chand.demo.data.Person;
 import com.chand.demo.repository.NewPersonRepo;
 import com.chand.demo.repository.PersonRepository;
-import com.chand.demo.schema.PersonSchema;
 import com.chand.demo.service.PersonService;
 import com.chand.demo.service.ProductService;
 
@@ -56,6 +55,12 @@ public class PersonController {
 		return personService.getAllPersons();
 	}
 	
+	@GetMapping(path="", produces= {MediaType.APPLICATION_JSON_VALUE})
+	public Mono<Person> getPersonById(@PathVariable("id")  final String id){
+		return personService.getPersonById(id);
+	}
+	
+	
 	@PostMapping(path="/persons", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public Mono<Person> postPerson(@RequestBody @NotNull Person person) throws IOException{
 		return personService.savePerson(person);
@@ -74,6 +79,7 @@ public class PersonController {
 	public Mono<Void> deletePerson(@RequestBody @NotNull String id) throws IOException{
 		return personService.deleteOne(id);
 	}
+	
 	
 	
 	

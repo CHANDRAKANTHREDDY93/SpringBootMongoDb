@@ -24,6 +24,10 @@ public class PersonService {
 		return personRepo.findAll();
 	}
 	
+	public Mono<Person> getPersonById(String id){
+		return personRepo.findById(id);
+	}
+	
 //	private Mono<PersonSchema> getPersonById(String id){
 //		return personRepo.findById(id).map(this::map);
 //	}

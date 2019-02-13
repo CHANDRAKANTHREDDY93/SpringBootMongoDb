@@ -3,11 +3,9 @@ package com.chand.demo.repository;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
-import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.chand.demo.data.Person;
-import com.chand.demo.schema.PersonSchema;
 
 import reactor.core.publisher.Mono;
 
