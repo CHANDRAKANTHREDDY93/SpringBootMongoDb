@@ -1,6 +1,8 @@
 ---
   applications:
       - name: SpringMongoStarter
+        path: target/SpringMongoDbStarter-0.0.1-SNAPSHOT.jar
+        domain: cfapps.io
         memory: 768M
         instances: 1
         random-route: true
